@@ -1,0 +1,1 @@
+# Example of GitHub action implementation for a Spring Boot project (Maven)

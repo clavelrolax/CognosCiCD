@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: web-springboot
+  name: web-springboot
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-springboot
+  template:
+    metadata:
+      labels:
+        app: web-springboot
+    spec:
+      containers:
+      - image: clavelrolax/springboot-app-v01
+        name: springboot
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-springboot
+spec:
+  selector:
+    app: web-springboot
+  type: NodePort
+  ports:
+    - port: 8080
+      nodePort: 30080
